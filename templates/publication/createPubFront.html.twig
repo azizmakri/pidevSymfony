@@ -1,0 +1,59 @@
+
+{% extends "frontbase.html.twig" %}
+
+        {% block body %}
+
+
+            <main id="main" class="main">
+
+                <section class="section dashboard">
+                    <div class="row">
+
+                        <!-- Left side columns -->
+                        <div class="col-lg-12">
+                            <div class="row">
+
+
+                                <!-- Sales Card -->
+                                <div class="col-xxl-12 col-md-12">
+
+                                    <div class="card card-primary">
+                                        <div class="blog-detail-ct">
+                                            <h1 class="card-title">Créer une publication</h1>
+                                        </div>
+
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+                                        <div class="card-body">
+                                            <img src="https://picsum.photos/550/500" alt="">
+
+                                            {{ form_start(f) }}
+
+                                            <!-- /.card-body -->
+                                            {{ form_end(f) }}
+
+
+                                        </div>
+
+
+                                    </div><!-- End Sales Card -->
+
+
+
+
+                                </div>
+                            </div><!-- End Left side columns -->
+
+                            <!-- Right side columns -->
+
+
+                        </div>
+                    </div>
+                </section>
+
+            </main><!-- End #main -->
+
+            <!-- ======= Footer ======= -->
+
+        {% endblock %}
+

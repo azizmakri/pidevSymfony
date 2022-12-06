@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaire index{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('app_commentaire_new') }}">Create new</a>
+
+    <main id="main" class="main">
+<section class="section dashboard">
+    <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+            <div class="row">
+
+                <!-- Sales Card -->
+                <div class="col-xxl-12 col-md-12">
+
+                    <table id="example1" class="table table-bordered table-striped" style="margin-top: 100px">
+                        <thead>
+                        <tr>
+                            <th>Idcomment</th>
+                            <th>Iduser</th>
+                            <th>Commentaire</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for commentaire in commentaires %}
+                            <tr>
+                                <td>{{ commentaire.idcomment }}</td>
+                                <td>{{ commentaire.iduser }}</td>
+                                <td>{{ commentaire.commentaire }}</td>
+                                <td>
+                                    <a href="{{ path('supp_comm',{'id':commentaire.idcomment}) }}" style="margin: 4px">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                </div><!-- End Sales Card -->
+
+
+
+
+            </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+
+
+    </div>
+</section>
+    </main>
+{% endblock %}
+

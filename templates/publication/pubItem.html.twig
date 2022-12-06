@@ -1,0 +1,81 @@
+
+
+{% extends "frontbase.html.twig" %}
+
+{% block body %}
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="blog-detail-ct">
+                        <h1>{{ pub.topic }}</h1>
+                        <p class="time">{{ pub.datepub | date("m/d/y") }}</p>
+                        <img src="https://picsum.photos/550/500" alt="">
+
+                        <p>{{ pub.texte }}</p>
+                        <div class="row">
+                            <a  href="{{ path('likeevent',{'id':pub.idpub}) }}">  <img   width="30" src="https://cdn-icons-png.flaticon.com/512/126/126473.png"></a><span style="color: #FFFFFF">{{ pub.jaime }}</span>
+
+                        <a  href="{{ path('dislikeevent',{'id':pub.idpub}) }}"> <img   width="30" src="https://cdn-icons-png.flaticon.com/512/126/126504.png"></a><span style="color: #FFFFFF">{{ pub.jaimepas }}</span>
+                        </div>
+                        <!-- share link -->
+                        <div class="flex-it share-tag">
+                            <div class="social-link">
+                                <h4>Share it</h4>
+                                <a href="#"><i class="ion-social-facebook"></i></a>
+                                <a href="#"><i class="ion-social-twitter"></i></a>
+                                <a href="#"><i class="ion-social-googleplus"></i></a>
+                                <a href="#"><i class="ion-social-pinterest"></i></a>
+                                <a href="#"><i class="ion-social-linkedin"></i></a>
+                            </div>
+                            <div class="right-it">
+                                <h4>Tags</h4>
+                                <a href="#">Gray,</a>
+                                <a href="#">Film,</a>
+                                <a href="#">Poster</a>
+                            </div>
+                        </div>
+                        <!-- comment items -->
+                        <div class="comments">
+                            <h4>{{ commentaire| length}} Comments</h4>
+
+
+                            {% for comm in commentaire %}
+                                <div class="cmt-item flex-it">
+
+                                    <div class="author-infor">
+                                        <div class="flex-it2">
+                                            <h6><a href="#">{{ comm.iduser }}</a></h6> <span class="time"> - 27 Mar 2017</span>
+                                        </div>
+                                        <p>{{ comm.commentaire}}</p>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="comment-form">
+                            <h4>Leave a comment</h4>
+                            {{ form_start(form) }}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{ form_widget(form.iduser, {'attr': {'placeholder': 'iduser'}}) }}
+                                    </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{ form_widget(form.commentaire, {'attr': {'placeholder': 'message'}}) }}
+                                    </div>
+                                </div>
+                                <input class="submit" type="submit" placeholder="submit">
+                                </div>
+                            {{ form_end(form) }}
+
+                        <!-- comment form -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+    <main id="main" class="main">
+
+
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <!-- Sales Card -->
+                        <div class="col-xxl-12 col-md-12">
+
+                            <button type="button" class="btn btn-primary" >
+                                <a href="{{ path('pub_pdf') }}" style="color: #FFFFFF">imprimer le tableau</a>
+                            </button>
+
+                                <table id="example1" class="table table-bordered table-striped" style="margin-top: 100px">
+                                    <thead>
+                                    <th>topic</th>
+                                    <th>user</th>
+                                    <th>rating</th>
+                                    <th>date</th>
+                                    <th>action</th>
+                                    </thead>
+                                    <tbody>
+                                    {% for pub in p %}
+                                        <tr>
+                                            <td>{{ pub.pub.topic }}</td>
+                                            <td>{{ pub.pub.iduser }}</td>
+                                            <td>{{ pub.pub.rating }}</td>
+                                            <td>{{ pub.pub.datepub | date("m/d/y") }}</td>
+                                            <td>
+                                                <a href="{{ path('modifPub',{'id':pub.pub.idpub}) }}" style="margin: 4px">Modifier</a>
+                                                <a href="{{ path('supp_pub',{'id':pub.pub.idpub}) }}" style="margin: 4px">Supprimer</a>
+                                                <a class="btn" href="{{ path('stat', {'id': pub.pub.idpub}) }}">stat</a>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ pub.pub.idpub }}">
+                                                    Comments
+                                                </button>
+
+                                        </tr>
+
+                                        <div class="modal fade" id="exampleModal{{ pub.pub.idpub }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    {% if pub.commentaire|length == 0 %}
+                                                        <h1>c'est vide !!!!!</h1>
+                                                    {% else %}
+                                                        {% for comment in pub.commentaire %}
+                                                         <div class="card mb-3" style="max-width: 540px;">
+                                                            <div class="row no-gutters">
+
+                                                                <div class="col-md-12">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">{{comment.iduser}}</h5>
+                                                                        <p class="card-text">{{comment.commentaire}}.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                    {% endif %}
+
+                                                    
+                                                       
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                        </div><!-- End Sales Card -->
+
+
+
+
+                    </div>
+                </div><!-- End Left side columns -->
+
+                <!-- Right side columns -->
+
+
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+
+{% endblock %}

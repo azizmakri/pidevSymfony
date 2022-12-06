@@ -1,0 +1,31 @@
+
+
+
+
+
+{% block body %}
+
+
+    <table id="example1" class="table table-bordered table-striped" style="margin-top: 100px">
+        <thead>
+        <th>topic</th>
+        <th>user</th>
+        <th>nombre de commentaires</th>
+        <th>rating</th>
+        <th>date</th>
+        </thead>
+        <tbody>
+        {% for pub in pubs %}
+            <tr>
+                <td>{{ pub.topic }}</td>
+                <td>{{ pub.iduser }}</td>
+                <td> {{ pub.nbrecommentaire }} </td>
+                <td>{{ pub.rating }}</td>
+                <td>{{ pub.datepub | date("m/d/y") }}</td>
+                {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
+
